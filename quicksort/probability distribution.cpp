@@ -53,24 +53,31 @@ void quicksort(int a[], int l, int h){
     }
 }
 
-void print(int a[], int n){
-    cout << "Sorted Array" << endl;
-    for(int i=0; i<n; i++){
-        cout << a[i] << " ";
-    }
-    cout << endl;
-}
-
 int main(){
-    cout << "Enter the size of the Array" << endl;
-    int n;
-    cin >> n;
+    ofstream MyFile("filename.txt");
+    double u = 0;
+    clock_t start, end;
+    int n = 10000;
     int a[n];
-    cout << "Enter the elements of the Array" << endl;
-    for(int i=0; i<n; i++){
-        cin >> a[i];
+    int b[n];
+
+    for(int j=0;j<n;j++){
+      a[j]=rand()%1000000;
+      b[j] = a[j];
     }
+    for(int j=0; j<10000; j++){
+    start = clock();
     quicksort(a, 0, n-1);
-    print(a, n);
+    end = clock();
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+
+    MyFile << time_taken<<endl;
+    
+    for(int j=0; j<n; j++){
+        a[j] = b[j];
+    }
+    }
+
     return 0;
-}
+    }
+    
